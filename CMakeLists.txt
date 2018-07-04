@@ -5,8 +5,8 @@ project(OpswatAcademyQtExample)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
-find_package(Qt5Core)
-find_package(Qt5Widgets)
+find_package(Qt5Core HINTS /home/temerole/Qt/5.11.1/gcc_64/)
+find_package(Qt5Widgets HINTS /home/temerole/Qt/5.11.1/gcc_64/)
 
 # compiling
 file(GLOB sources *.cpp)
