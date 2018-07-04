@@ -16,6 +16,7 @@ public:
 	~Game();
 
     void generateObjects();
+    bool getGameOver();
 
 protected:
 	void init();
@@ -34,6 +35,8 @@ private:
 	Ball *ball = nullptr;
 	QList<Object*> objects;
 	int Level = 1;
-    int directionX = -1;
-    int directionY = -1;
+	int directionX = -1;
+	int directionY = -1;
+	int tempval;
+	bool gameOver = false;
 };

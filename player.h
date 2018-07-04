@@ -9,6 +9,7 @@ class Player: public QGraphicsRectItem
 {
 public:
 	Player();
+	~Player();
 	int getRandX();
 };
 

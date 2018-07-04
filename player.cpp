@@ -18,3 +18,7 @@ int Player::getRandX() {
 	int xpos = rand->bounded(0,600);
 	return xpos;
 }
+
+Player::~Player() {
+
+}

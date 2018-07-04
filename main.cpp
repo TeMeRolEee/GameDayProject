@@ -22,5 +22,16 @@ int main(int argc, char *argv[])
 
 	Game game(scene);
 	a.installEventFilter(&game);
-	return a.exec();
+	a.exec();
+
+	while (true)
+	{
+		if(game.getGameOver())
+		{
+			return 0;
+		}
+	}
+
+
+
 }

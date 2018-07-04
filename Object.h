@@ -14,6 +14,7 @@
 class Object: public QGraphicsRectItem {
 public:
     Object(QVector2D &position);
+    ~Object();
 };
 
 

@@ -15,6 +15,7 @@ class Ball: public QGraphicsRectItem
 {
 private:
     float velocity = 5;
+    float angle = 0;
     QVector2D *vector;
 public:
     Ball();

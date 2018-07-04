@@ -15,3 +15,6 @@ Object::Object(QVector2D &position) :
     brush.setColor(Qt::darkYellow);
     setBrush(brush);
 }
+
+Object::~Object() {
+}
