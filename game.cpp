@@ -2,12 +2,13 @@
 
 #include <QKeyEvent>
 #include <QDebug>
+#include <QTime>
 
 Game::Game(QGraphicsScene &scene) : scene(scene)
 {
 	connect(&mainLoopTimer, &QTimer::timeout, this, &Game::mainLoop);
 	mainLoopTimer.setSingleShot(false);
-	mainLoopTimer.start(1000 / 60);
+	mainLoopTimer.start(1000 / 33);
 
 	init();
 }
@@ -16,7 +17,20 @@ QVector2D* getRandomVector()
 {
 	QRandomGenerator *rand = new QRandomGenerator();
 
-	QVector2D *temp = new QVector2D(rand->bounded(2.0),rand->bounded(2.0));
+    QTime time = QTime::currentTime();
+    qsrand((uint)time.msec());
+    rand->seed(qrand());
+    int isNegative = qrand();
+    qDebug() << "random:" << isNegative;
+    QVector2D *temp;
+    if(isNegative%2==0)
+    {
+        temp = new QVector2D(rand->bounded(1.0)*-1,rand->bounded(1.0));
+    } else
+    {
+        temp = new QVector2D(rand->bounded(1.0),rand->bounded(1.0));
+    }
+
 	qDebug() << "randomVector: " << temp->x() << " " << temp->y();
 	return temp;
 }
@@ -37,6 +51,7 @@ void Game::init()
 	scene.addItem(ball);
 	ball->setPos(player->x()+15,player->y()-20);
 	ball->setVector(getRandomVector());
+	//QList<>
 }
 
 bool Game::eventFilter(QObject *watched, QEvent *event)
@@ -83,21 +98,46 @@ void Game::keyPressEvent(QKeyEvent *event)
 void Game::mainLoop()
 {
 	//qDebug() << "mainLoop" << __FILE__ << __LINE__;
+	QVector2D *tempVector = ball->getVector();
 	if((ball->x() >= 0 && ball->x() <= 600) && (ball->y() >= 0 && ball->y() <= 600))
 	{
-		/**QVector2D tempVector = getRandomVector(ball);
-		qDebug() << "valtoztatas" << tempVector.x() << " " << tempVector.y();
-		if(ball->x() == 0 || ball->x() == 600)
-		{
-			tempVector.setX(tempVector.x()*-1);
-		}*/
-		int xPos = ball->x() - ball->getVelocity();// * tempVector.x() / 1000;
-		int yPos = ball->y() - ball->getVelocity();// * tempVector.y() / 1000;
 
+		qDebug() << "valtoztatas" << tempVector->x() << " " << tempVector->y();
+
+		int xPos = ball->x() - (ball->getVelocity() * tempVector->x());
+		int yPos = ball->y() - (ball->getVelocity() * tempVector->y());
+		if(xPos < 0)
+		{
+			xPos = 0;
+		} else if(xPos > 600)
+		{
+			xPos = 600;
+		}
+		qDebug() << "tempvectors: x: " << tempVector->x() << "y: " << tempVector->y() << "szorzat: " << ball->getVelocity() * tempVector->x() << "xpos: " << xPos << "ypos: " << yPos;
 		//int xPos = ;
 		//int yPos = ;
-		qDebug() << "positions:" << xPos << " " << yPos;
-		//QPointF()
+		//qDebug() << "positions:" << xPos << " " << yPos;
+		QPointF(xPos, yPos);
 		ball->setPos(xPos,yPos);
 	}
+	if(ball->x() == 0)
+	{
+		tempVector->setX(tempVector->y() * -1);
+		tempVector->setY(tempVector->x() * -1);
+		qDebug() << "inverting: " << tempVector->x();
+		int xPos = ball->x() - (ball->getVelocity() * tempVector->x());
+		int yPos = ball->y() - (ball->getVelocity() * tempVector->y());
+		QPointF(xPos, yPos);
+		ball->setPos(xPos,yPos);
+	}
+	else if (ball->x() == 600)
+    {
+        tempVector->setX(tempVector->y());
+        tempVector->setY(tempVector->x());
+        qDebug() << "inverting: " << tempVector->x();
+        int xPos = ball->x() - (ball->getVelocity() * tempVector->x());
+        int yPos = ball->y() - (ball->getVelocity() * tempVector->y());
+        QPointF(xPos, yPos);
+        ball->setPos(xPos,yPos);
+    }
 }

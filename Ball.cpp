@@ -30,6 +30,6 @@ void Ball::setVector(QVector2D *newVector){
 
 
 
-QVector2D Ball::getVector() {
-    return *vector;
+QVector2D* Ball::getVector() {
+    return vector;
 }

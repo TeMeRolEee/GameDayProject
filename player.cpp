@@ -6,7 +6,7 @@ Player::Player() :
 	QGraphicsRectItem()
 {
 	setRect(0, 0, 60, 15);
-	setPos(getRandX(), 550);
+	setPos(300, 570);
 
 	QBrush brush;
 	brush.setStyle(Qt::SolidPattern);

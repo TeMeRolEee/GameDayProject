@@ -12,7 +12,7 @@ find_package(Qt5Widgets HINTS /home/temerole/Qt/5.11.1/gcc_64/)
 file(GLOB sources *.cpp)
 
 add_executable(QtExample
-    ${sources} Ball.cpp Ball.h)
+    ${sources} Ball.cpp Ball.h Opponents.cpp Opponents.h)
 
 # linking
 target_link_libraries(QtExample Qt5::Core)

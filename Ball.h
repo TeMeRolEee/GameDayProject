@@ -19,7 +19,7 @@ private:
 public:
     Ball();
     float getVelocity();
-    QVector2D getVector();
+    QVector2D* getVector();
     void setVelocity(float newVelocity);
     void setVector(QVector2D *newVector);
 };
