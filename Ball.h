@@ -21,7 +21,7 @@ public:
     float getVelocity();
     QVector2D getVector();
     void setVelocity(float newVelocity);
-    void setVector(QVector2D newVector);
+    void setVector(QVector2D *newVector);
 };
 
 

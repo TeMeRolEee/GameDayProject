@@ -24,9 +24,8 @@ void Ball::setVelocity(float newVelocity) {
     this->velocity = newVelocity;
 }
 
-void Ball::setVector(QVector2D newVector){
-    this->vector->setX(newVector.x());
-    this->vector->setY(newVector.y());
+void Ball::setVector(QVector2D *newVector){
+    this->vector = newVector;
 }
 
 

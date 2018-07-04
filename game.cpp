@@ -12,11 +12,13 @@ Game::Game(QGraphicsScene &scene) : scene(scene)
 	init();
 }
 
-QVector2D getRandomVector(Ball *ball)
+QVector2D* getRandomVector()
 {
 	QRandomGenerator *rand = new QRandomGenerator();
-	float angle = rand->bounded(0,1);
-	return QVector2D(ball->x(),ball->y()+angle);
+
+	QVector2D *temp = new QVector2D(rand->bounded(2.0),rand->bounded(2.0));
+	qDebug() << "randomVector: " << temp->x() << " " << temp->y();
+	return temp;
 }
 
 Game::~Game()
@@ -34,6 +36,7 @@ void Game::init()
 	ball = new Ball();
 	scene.addItem(ball);
 	ball->setPos(player->x()+15,player->y()-20);
+	ball->setVector(getRandomVector());
 }
 
 bool Game::eventFilter(QObject *watched, QEvent *event)
@@ -82,14 +85,14 @@ void Game::mainLoop()
 	//qDebug() << "mainLoop" << __FILE__ << __LINE__;
 	if((ball->x() >= 0 && ball->x() <= 600) && (ball->y() >= 0 && ball->y() <= 600))
 	{
-		QVector2D tempVector = getRandomVector(ball);
+		/**QVector2D tempVector = getRandomVector(ball);
 		qDebug() << "valtoztatas" << tempVector.x() << " " << tempVector.y();
 		if(ball->x() == 0 || ball->x() == 600)
 		{
 			tempVector.setX(tempVector.x()*-1);
-		}
-		int xPos = ball->x() - ball->getVelocity() * tempVector.x() / 1000;
-		int yPos = ball->y() - ball->getVelocity() * tempVector.y() / 1000;
+		}*/
+		int xPos = ball->x() - ball->getVelocity();// * tempVector.x() / 1000;
+		int yPos = ball->y() - ball->getVelocity();// * tempVector.y() / 1000;
 
 		//int xPos = ;
 		//int yPos = ;
