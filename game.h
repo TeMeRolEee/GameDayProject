@@ -4,6 +4,7 @@
 #include <QTimer>
 
 #include "player.h"
+#include "Ball.h"
 
 class Game: public QObject
 {
@@ -27,4 +28,5 @@ private:
 	QGraphicsScene &scene;
 	Player *player = nullptr;
 	QTimer mainLoopTimer;
+	Ball *ball = nullptr;
 };
