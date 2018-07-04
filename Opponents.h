@@ -5,9 +5,15 @@
 #ifndef OPSWATACADEMYQTEXAMPLE_OPPONENTS_H
 #define OPSWATACADEMYQTEXAMPLE_OPPONENTS_H
 
+#include <QGraphicsRectItem>
+#include <QObject>
+#include <QBrush>
+#include <QRandomGenerator>
+#include <QVector2D>
 
 class Opponents {
 
+    Opponents();
 };
 
 

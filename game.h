@@ -5,6 +5,7 @@
 
 #include "player.h"
 #include "Ball.h"
+#include <Object.h>
 
 class Game: public QObject
 {
@@ -13,6 +14,8 @@ class Game: public QObject
 public:
 	Game(QGraphicsScene &scene);
 	~Game();
+
+    void generateObjects();
 
 protected:
 	void init();
@@ -29,4 +32,8 @@ private:
 	Player *player = nullptr;
 	QTimer mainLoopTimer;
 	Ball *ball = nullptr;
+	QList<Object*> objects;
+	int Level = 1;
+    int directionX = -1;
+    int directionY = -1;
 };

@@ -8,7 +8,7 @@ Ball::Ball() :
         QGraphicsRectItem()
 {
     setRect(10, 10, 10, 10);
-    setPos(40, 40);
+    setPos(40, 50);
 
     QBrush brush;
     brush.setStyle(Qt::SolidPattern);
@@ -32,4 +32,8 @@ void Ball::setVector(QVector2D *newVector){
 
 QVector2D* Ball::getVector() {
     return vector;
+}
+
+Ball::~Ball() {
+
 }

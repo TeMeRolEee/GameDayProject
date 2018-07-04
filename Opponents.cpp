@@ -3,3 +3,7 @@
 //
 
 #include "Opponents.h"
+
+Opponents::Opponents() {
+
+}
